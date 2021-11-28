@@ -1,16 +1,31 @@
 #check{
   display: none;
 }
-label #btn, label #cancel{
-  position: absolute;
-  cursor: pointer;
-}
-label #btn{
-  left: 40px;
-  top: 25px;
-  font-size: 35px;
+
+#sidebar{
+  left: -500px;
 }
 
-.sidebar{
-margin-left: -500px;
+label #btn-close{
+  float: right;
+  top: 50px;
+  padding-right: 20px;
+}
+
+label #btn-check{
+  display: none;
+}
+
+
+
+#check:checked ~ #sidebar{
+  display: none;
+}
+
+#check:checked ~ label #btn-check{
+  display: block;
+}
+
+#check:checked ~ label #btn-close{
+  display: none;
 }
