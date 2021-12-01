@@ -1,31 +1,29 @@
-#check{
-  display: none;
+:root {
+  --close-icon: block;
+  --open-icon: none;
+  --floats: right;
 }
 
-#sidebar{
-  left: -500px;
+.open {
+  --close-icon: none;
+  --open-icon: block;
+  --floats: left;
 }
 
-label #btn-close{
-  float: right;
+#iconbtn {
+  display: var(--close-icon);
+  float: var(--floats);
   top: 50px;
   padding-right: 20px;
+  cursor: pointer;
 }
-
-label #btn-check{
-  display: none;
+#sidebar {
+  display: var(--close-icon);
 }
-
-
-
-#check:checked ~ #sidebar{
-  display: none;
-}
-
-#check:checked ~ label #btn-check{
-  display: block;
-}
-
-#check:checked ~ label #btn-close{
-  display: none;
+#iconbtn2 {
+  display: var(--open-icon);
+  float: left;
+  top: 50px;
+  padding-right: 20px;
+  cursor: pointer;
 }

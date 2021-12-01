@@ -1,31 +1,57 @@
-
-
 {% if page.author_profile or layout.author_profile or page.sidebar %}
 
+<div class="sidebar sticky">
+  <i class="fas fa-times" id="iconbtn"></i>
 
-  <div class="sidebar sticky" >
-    <input type="checkbox" id="check">
-    <label for="check">
-      
-      <i class="fas fa-times" id="btn-close"></i>
-      <i class="fas fa-bars" id="btn-check"></i>
-    </label>
-    <div id="sidebar" >
-      {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}{% endif %}
-        {% if page.sidebar %}
-        {% for s in page.sidebar %}
-        {% if s.image %}
-        <img src="{{ s.image | relative_url }}"
-             alt="{% if s.image_alt %}{{ s.image_alt }}{% endif %}">
-        {% endif %}
-        {% if s.title %}<h3>{{ s.title }}</h3>{% endif %}
-        {% if s.text %}{{ s.text | markdownify }}{% endif %}
-        {% if s.nav %}{% include nav_list nav=s.nav %}{% endif %}
-        {% endfor %}
-        {% if page.sidebar.nav %}
-        {% include nav_list nav=page.sidebar.nav %}
-        {% endif %}
-        {% endif %}
-    </div>
+  <i class="fas fa-bars" id="iconbtn2"></i>
+  <div id="sidebar" class="side-display">
+    {% if page.author_profile or layout.author_profile %}{% include
+    author-profile.html %}{% endif %} {% if page.sidebar %} {% for s in
+    page.sidebar %} {% if s.image %}
+    <img
+      src="{{ s.image | relative_url }}"
+      alt="{% if s.image_alt %}{{ s.image_alt }}{% endif %}"
+    />
+    {% endif %} {% if s.title %}
+    <h3>{{ s.title }}</h3>
+    {% endif %} {% if s.text %}{{ s.text | markdownify }}{% endif %} {% if s.nav
+    %}{% include nav_list nav=s.nav %}{% endif %} {% endfor %} {% if
+    page.sidebar.nav %} {% include nav_list nav=page.sidebar.nav %} {% endif %}
+    {% endif %}
   </div>
+</div>
 {% endif %}
+
+<script>
+  var iconbtn = document.getElementById("iconbtn");
+  var iconbtn2 = document.getElementById("iconbtn2");
+
+  if (localStorage.getItem("theme") == null) {
+    localStorage.setItem("theme", "dark");
+  }
+
+  let localData = localStorage.getItem("theme");
+
+  if (localData == "light") {
+    document.body.classList.remove("open");
+  } else if (localData == "dark") {
+    document.body.classList.add("open");
+  }
+
+  iconbtn.onclick = function () {
+    document.body.classList.add("open");
+    localStorage.setItem("theme", "dark");
+  };
+
+  iconbtn2.onclick = function () {
+    document.body.classList.remove("open");
+    localStorage.setItem("theme", "light");
+  };
+</script>
+
+<!--bundle exec jekyll serve
+
+light= no navbar
+dark= nav bar
+
+-->
